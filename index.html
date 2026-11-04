@@ -307,10 +307,10 @@ input:focus,select:focus{border-color:var(--mint)}
 <div class="toast" id="toast"></div>
 
 <script>
-/* ================= KONFIGURACJA – EDYTUJ TUTAJ ================= */
+/* ================= KONFIGURACJA ================= */
 const SHOP_NAME  = "Flores MC SHOP";
-const SERVER_IP  = "FloresMc.zzux.com";          // adres serwera
-const ORDER_MAIL = "FloresMC.zzux.com@protonmail.com";   // adres, na który przychodzą zamówienia
+const SERVER_IP  = "FloresMc.zzux.com";          
+const WEB3FORMS_KEY = "3097a485-b180-4feb-a550-960f487598ce"; // Twój klucz Web3Forms
 const PAY_PHONE  = "";   // <- WPISZ numer telefonu do BLIK-a na telefon, np. "123 456 789"
 
 // Produkty. Ranga: cat:"rangi". Klucze: cat:"klucze". Ceny w zł.
@@ -459,13 +459,12 @@ $("#orderForm").addEventListener("submit", async e=>{
   const btn = $("#sendBtn"); btn.disabled = true; btn.textContent = "WYSYŁAM...";
   err.textContent = "";
   try{
-    const res = await fetch("https://formsubmit.co/ajax/" + encodeURIComponent(ORDER_MAIL), {
+    const res = await fetch("https://api.web3forms.com/submit", {
       method:"POST",
       headers:{"Content-Type":"application/json","Accept":"application/json"},
       body: JSON.stringify({
-        _subject: `Nowe zamówienie ${SHOP_NAME} – ${nick}`,
-        _template: "table",
-        _captcha: "false",
+        access_key: WEB3FORMS_KEY,
+        subject: `Nowe zamówienie ${SHOP_NAME} – ${nick}`,
         "Nick z gry": nick,
         email: email,
         "Metoda płatności": $("#pay").value,
@@ -476,7 +475,7 @@ $("#orderForm").addEventListener("submit", async e=>{
       })
     });
     const data = await res.json().catch(()=>({}));
-    if(!res.ok || data.success === "false") throw new Error(data.message || "Błąd wysyłki");
+    if(!res.ok || data.success === false) throw new Error(data.message || "Błąd wysyłki");
     const paidTotal = totals().sum, paidMethod = $("#pay").value;
     const info = $("#payInfo"); info.textContent = "";
     const row = (a,b) => { const d = document.createElement("div"); const s1 = document.createElement("span"), s2 = document.createElement("span"); s1.textContent = a; s2.textContent = b; d.append(s1,s2); info.appendChild(d); };
