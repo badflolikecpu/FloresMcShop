@@ -202,7 +202,7 @@ input:focus,select:focus{border-color:var(--mint)}
   <div class="container hero-grid">
     <div class="hero-main">
       <h1>FLORES MC<br>SHOP</h1>
-      <p>Oficjalny sklep serwera Flores MC. Kup rangę, zdobądź klucze do skrzyń i wspieraj rozwój serwera.</p>
+      <p>Oficjalny sklep serwera Minecraft Flores MC. Kup rangę, zdobądź klucze do skrzyń i wspieraj rozwój serwera.</p>
       <div class="hero-actions">
         <a href="#sklep" class="btn btn-dark">ZOBACZ SKLEP</a>
         <button class="btn btn-mint" id="copyIp">SKOPIUJ IP</button>
@@ -216,7 +216,7 @@ input:focus,select:focus{border-color:var(--mint)}
       </div>
       <div class="side-box">
         <h3>SZYBKIE ZAMÓWIENIE</h3>
-        <p>Wybierz produkt, wpisz nick z gry i wyślij zamówienie. Resztę załatwiamy mailowo.</p>
+        <p>Wybierz produkt, wpisz nick z gry i wyślij zamówienie. Dane do przelewu wyślemy na e-mail.</p>
       </div>
     </div>
   </div>
@@ -242,7 +242,7 @@ input:focus,select:focus{border-color:var(--mint)}
   <div class="steps">
     <div class="step"><div class="n">1</div><h5>WYBIERZ</h5><p>Dodaj do koszyka rangę lub klucze.</p></div>
     <div class="step"><div class="n">2</div><h5>PODAJ NICK</h5><p>Wpisz dokładny nick z gry i swój adres e-mail.</p></div>
-    <div class="step"><div class="n">3</div><h5>WYŚLIJ ZAMÓWIENIE</h5><p>Zamówienie trafia do administracji, a Ty płacisz BLIK-iem na telefon (numer pokażemy po wysłaniu zamówienia).</p></div>
+    <div class="step"><div class="n">3</div><h5>WYŚLIJ ZAMÓWIENIE</h5><p>Zamówienie trafia do administracji, a dane do przelewu/płatności otrzymasz w wiadomości e-mail.</p></div>
     <div class="step"><div class="n">4</div><h5>ODBIERZ</h5><p>Po zaksięgowaniu wpłaty nadajemy produkt na Twoim koncie w grze.</p></div>
   </div>
 </section>
@@ -273,7 +273,7 @@ input:focus,select:focus{border-color:var(--mint)}
     <button class="x" id="closeModal" aria-label="Zamknij">×</button>
     <div id="formView">
       <h3>FINALIZACJA ZAMÓWIENIA</h3>
-      <p class="sub">Podaj dane, a my wyślemy Ci instrukcję płatności na e-mail.</p>
+      <p class="sub">Podaj dane – instrukcję oraz dane do przelewu wyślemy Ci na e-mail.</p>
       <form id="orderForm" novalidate>
         <label for="nick">NICK Z GRY</label>
         <input type="text" id="nick" maxlength="16" placeholder="np. Steve_123" autocomplete="off">
@@ -281,8 +281,8 @@ input:focus,select:focus{border-color:var(--mint)}
         <input type="email" id="email" placeholder="twoj@email.pl" autocomplete="email">
         <label for="pay">PREFEROWANA METODA PŁATNOŚCI</label>
         <select id="pay">
-          <option>BLIK na telefon</option>
-          <option>Przelew bankowy</option>
+          <option>BLIK na telefon / Przelew</option>
+          <option>Inna metoda</option>
         </select>
         <div class="summary" id="summary"></div>
         <label class="chk" style="font-family:'Poppins';text-transform:none;font-size:12px;margin:14px 0">
@@ -297,8 +297,11 @@ input:focus,select:focus{border-color:var(--mint)}
     <div id="doneView" class="done" style="display:none">
       <div class="big">✅</div>
       <h3>ZAMÓWIENIE WYSŁANE!</h3>
-      <div class="summary" id="payInfo" style="text-align:left"></div>
-      <p class="sub">Po zaksięgowaniu wpłaty nadamy produkt na Twoim koncie w grze. W razie pytań odpowiemy na Twój e-mail (sprawdź też spam).</p>
+      <div class="summary" id="payInfo" style="text-align:left">
+        <div><span>Status:</span><span>Oczekiwanie na płatność</span></div>
+        <div><span>Informacja:</span><span>Dane do przelewu zostały wysłane na podany e-mail!</span></div>
+      </div>
+      <p class="sub">Po zaksięgowaniu wpłaty nadamy produkt na Twoim koncie w grze. W razie pytań sprawdź skrzynkę (oraz folder spam).</p>
       <button class="btn btn-mint" id="doneBtn">ZAMKNIJ</button>
     </div>
   </div>
@@ -307,11 +310,10 @@ input:focus,select:focus{border-color:var(--mint)}
 <div class="toast" id="toast"></div>
 
 <script>
-/* ================= KONFIGURACJA – EDYTUJ TUTAJ ================= */
+/* ================= KONFIGURACJA ================= */
 const SHOP_NAME  = "Flores MC SHOP";
-const SERVER_IP  = "FloresMc.zzux.com";          // adres serwera
-const TARGET_MAIL= "floresmc@protonmail.com";      // TUTAJ WPISZ SWÓJ PRAWDZIWY E-MAIL W PROTONMAIL
-const PAY_PHONE  = "";   // <- WPISZ numer telefonu do BLIK-a na telefon, np. "123 456 789"
+const SERVER_IP  = "FloresMc.zzux.com";          
+const WEB3FORMS_KEY = "3097a485-b180-4feb-a550-960f487598ce"; // Twój klucz Web3Forms
 
 // Produkty. Ranga: cat:"rangi". Klucze: cat:"klucze". Ceny w zł.
 const PRODUCTS = [
@@ -324,10 +326,10 @@ const PRODUCTS = [
   {id:"flores", cat:"rangi",  name:"RANGA FLORES", price:80, icon:"👑", tag:"TOP",
    desc:["Ranga FLORES na 30 dni","Dostęp do /kit flores (co 12h)","Pełny netheryt + totem + Kox"]},
 
-  {id:"k-zwykly",     cat:"klucze", name:"KLUCZ ZWYKŁY",     price:5,  icon:"🗝️", desc:["Otwiera zwykłą skrzynię","Dowolna liczba kluczy"]},
-  {id:"k-epicki",     cat:"klucze", name:"KLUCZ EPICKI",     price:12, icon:"🔑", tag:"HIT", desc:["Otwiera epicką skrzynię","Dowolna liczba kluczy"]},
-  {id:"k-legendarny", cat:"klucze", name:"KLUCZ LEGENDARNY", price:25, icon:"✨", desc:["Otwiera legendarną skrzynię","Dowolna liczba kluczy"]},
-  {id:"k-flores",     cat:"klucze", name:"KLUCZ FLORES",     price:40, icon:"🌸", tag:"NOWOŚĆ", desc:["Otwiera skrzynię Flores","Najlepsze nagrody"]}
+  {id:"k-rzadki",     cat:"klucze", name:"KLUCZ RZADKI",     price:8,  icon:"🗝️", desc:["Otwiera rzadką skrzynię","Dowolna liczba kluczy"]},
+  {id:"k-mityczny",   cat:"klucze", name:"KLUCZ MITYCZNY",   price:18, icon:"🔮", tag:"POPULARNY", desc:["Otwiera mityczną skrzynię","Dowolna liczba kluczy"]},
+  {id:"k-legendarny", cat:"klucze", name:"KLUCZ LEGENDARNY", price:30, icon:"✨", desc:["Otwiera legendarną skrzynię","Dowolna liczba kluczy"]},
+  {id:"k-floresowy",  cat:"klucze", name:"KLUCZ FLORESOWY",  price:45, icon:"🌸", tag:"TOP", desc:["Otwiera skrzynię Floresową","Najlepsze nagrody na serwerze"]}
 ];
 
 const KITS = [
@@ -448,7 +450,7 @@ $("#modal").addEventListener("click", e=>{ if(e.target.id==="modal") closeModal(
 $("#orderForm").addEventListener("submit", async e=>{
   e.preventDefault();
   const err = $("#err"), nick = $("#nick").value.trim(), email = $("#email").value.trim();
-  if($("#hp").value) return;                                   
+  if($("#hp").value) return;                                   // pułapka na boty
   if(!/^[A-Za-z0-9_]{3,16}$/.test(nick)) return err.textContent = "Nick: 3–16 znaków, tylko litery, cyfry i _";
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return err.textContent = "Podaj poprawny adres e-mail.";
   if(!$("#tos").checked) return err.textContent = "Musisz zaakceptować regulamin.";
@@ -459,15 +461,14 @@ $("#orderForm").addEventListener("submit", async e=>{
   const btn = $("#sendBtn"); btn.disabled = true; btn.textContent = "WYSYŁAM...";
   err.textContent = "";
   try{
-    const res = await fetch("https://formsubmit.co/ajax/" + encodeURIComponent(TARGET_MAIL), {
+    const res = await fetch("https://api.web3forms.com/submit", {
       method:"POST",
       headers:{"Content-Type":"application/json","Accept":"application/json"},
       body: JSON.stringify({
-        _subject: `Nowe zamówienie ${SHOP_NAME} – ${nick}`,
-        _template: "table",
-        _captcha: "false",
+        access_key: WEB3FORMS_KEY,
+        subject: `Nowe zamówienie ${SHOP_NAME} – ${nick}`,
         "Nick z gry": nick,
-        "E-mail gracza": email,
+        email: email,
         "Metoda płatności": $("#pay").value,
         "Zamówienie": order,
         "Komendy do nadania (konsola/czat)": ids.filter(id=>byId(id).cat==="rangi").map(id=>`/ranga ${nick} ${id} ${30*cart[id]}`).join("\n") || "brak rang w zamówieniu",
@@ -476,21 +477,8 @@ $("#orderForm").addEventListener("submit", async e=>{
       })
     });
     const data = await res.json().catch(()=>({}));
-    if(!res.ok) throw new Error("Błąd wysyłki");
-    
-    const paidTotal = totals().sum, paidMethod = $("#pay").value;
-    const info = $("#payInfo"); info.textContent = "";
-    const row = (a,b) => { const d = document.createElement("div"); const s1 = document.createElement("span"), s2 = document.createElement("span"); s1.textContent = a; s2.textContent = b; d.append(s1,s2); info.appendChild(d); };
-    if(paidMethod === "BLIK na telefon" && PAY_PHONE){
-      row("Płatność:", "BLIK na telefon");
-      row("Numer telefonu:", PAY_PHONE);
-      row("Kwota:", fmt(paidTotal));
-      row("Tytuł przelewu:", nick);
-    } else {
-      row("Płatność:", paidMethod);
-      row("Kwota:", fmt(paidTotal));
-      row("Dane do wpłaty:", "wyślemy na Twój e-mail");
-    }
+    if(!res.ok || data.success === false) throw new Error(data.message || "Błąd wysyłki");
+
     cart = {}; save(); renderCart();
     $("#formView").style.display = "none"; $("#doneView").style.display = "";
     $("#orderForm").reset();
