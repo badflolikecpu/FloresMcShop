@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FLORES MC SHOP – rangi i klucze</title>
-<meta name="description" content="Flores MC SHOP – oficjalny sklep serwera Minecraft Flores MC. Rangi, klucze i zestawy kitów.">
+<meta name="description" content="FLORES MC SHOP – oficjalny sklep serwera Minecraft Flores MC. Rangi, klucze i zestawy kitów.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
@@ -307,10 +307,10 @@ input:focus,select:focus{border-color:var(--mint)}
 <div class="toast" id="toast"></div>
 
 <script>
-/* ================= KONFIGURACJA ================= */
+/* ================= KONFIGURACJA – EDYTUJ TUTAJ ================= */
 const SHOP_NAME  = "Flores MC SHOP";
-const SERVER_IP  = "FloresMc.zzux.com";          
-const WEB3FORMS_KEY = "3097a485-b180-4feb-a550-960f487598ce"; // Twoj klucz Web3Forms
+const SERVER_IP  = "FloresMc.zzux.com";          // adres serwera
+const TARGET_MAIL= "floresmc@protonmail.com";      // TUTAJ WPISZ SWÓJ PRAWDZIWY E-MAIL W PROTONMAIL
 const PAY_PHONE  = "";   // <- WPISZ numer telefonu do BLIK-a na telefon, np. "123 456 789"
 
 // Produkty. Ranga: cat:"rangi". Klucze: cat:"klucze". Ceny w zł.
@@ -448,7 +448,7 @@ $("#modal").addEventListener("click", e=>{ if(e.target.id==="modal") closeModal(
 $("#orderForm").addEventListener("submit", async e=>{
   e.preventDefault();
   const err = $("#err"), nick = $("#nick").value.trim(), email = $("#email").value.trim();
-  if($("#hp").value) return;                                   // pułapka na boty
+  if($("#hp").value) return;                                   
   if(!/^[A-Za-z0-9_]{3,16}$/.test(nick)) return err.textContent = "Nick: 3–16 znaków, tylko litery, cyfry i _";
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return err.textContent = "Podaj poprawny adres e-mail.";
   if(!$("#tos").checked) return err.textContent = "Musisz zaakceptować regulamin.";
@@ -459,14 +459,15 @@ $("#orderForm").addEventListener("submit", async e=>{
   const btn = $("#sendBtn"); btn.disabled = true; btn.textContent = "WYSYŁAM...";
   err.textContent = "";
   try{
-    const res = await fetch("https://api.web3forms.com/submit", {
+    const res = await fetch("https://formsubmit.co/ajax/" + encodeURIComponent(TARGET_MAIL), {
       method:"POST",
       headers:{"Content-Type":"application/json","Accept":"application/json"},
       body: JSON.stringify({
-        access_key: WEB3FORMS_KEY,
-        subject: `Nowe zamówienie ${SHOP_NAME} – ${nick}`,
+        _subject: `Nowe zamówienie ${SHOP_NAME} – ${nick}`,
+        _template: "table",
+        _captcha: "false",
         "Nick z gry": nick,
-        email: email,
+        "E-mail gracza": email,
         "Metoda płatności": $("#pay").value,
         "Zamówienie": order,
         "Komendy do nadania (konsola/czat)": ids.filter(id=>byId(id).cat==="rangi").map(id=>`/ranga ${nick} ${id} ${30*cart[id]}`).join("\n") || "brak rang w zamówieniu",
@@ -475,7 +476,8 @@ $("#orderForm").addEventListener("submit", async e=>{
       })
     });
     const data = await res.json().catch(()=>({}));
-    if(!res.ok || data.success === false) throw new Error(data.message || "Błąd wysyłki");
+    if(!res.ok) throw new Error("Błąd wysyłki");
+    
     const paidTotal = totals().sum, paidMethod = $("#pay").value;
     const info = $("#payInfo"); info.textContent = "";
     const row = (a,b) => { const d = document.createElement("div"); const s1 = document.createElement("span"), s2 = document.createElement("span"); s1.textContent = a; s2.textContent = b; d.append(s1,s2); info.appendChild(d); };
