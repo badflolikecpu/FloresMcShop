@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLORES MC SHOP – rangi i klucze</title>
+<meta name="description" content="Flores MC SHOP – oficjalny sklep serwera Minecraft Flores MC. Rangi, klucze i zestawy kitów.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#150a26;
+  --bg2:#1d0f35;
+  --card:#2a1649;
+  --card2:#341c5b;
+  --line:#4a2a7e;
+  --pink:#ff4fa3;
+  --pink-soft:#ffb3d9;
+  --mint:#5ff2c4;
+  --mint-soft:#c4fbe9;
+  --text:#f4ecff;
+  --muted:#b9a6dc;
+  --danger:#ff5d73;
+  --px:'Silkscreen',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.55;
+  background-image:
+    radial-gradient(circle at 15% 0%,rgba(255,79,163,.18),transparent 45%),
+    radial-gradient(circle at 90% 20%,rgba(95,242,196,.12),transparent 40%);
+  background-attachment:fixed;
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.container{max-width:1160px;margin:0 auto;padding:0 20px}
+.px{font-family:var(--px);text-transform:uppercase;letter-spacing:.5px}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:50;background:rgba(21,10,38,.92);backdrop-filter:blur(8px);border-bottom:4px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:70px;gap:16px}
+.logo{font-family:var(--px);font-size:22px;font-weight:700;color:var(--pink);text-shadow:3px 3px 0 #5a1c45;white-space:nowrap}
+.logo span{color:var(--mint);text-shadow:3px 3px 0 #11624c}
+.menu{display:flex;gap:26px;font-family:var(--px);font-size:14px}
+.menu a{color:var(--muted);transition:.15s}
+.menu a:hover{color:var(--mint)}
+.cart-btn{position:relative;background:var(--pink);color:#2a0a1c;border:0;border-bottom:4px solid #b32c74;padding:9px 16px;font-family:var(--px);font-size:13px;font-weight:700;transition:.1s}
+.cart-btn:hover{transform:translateY(-2px)}
+.cart-btn:active{transform:translateY(2px);border-bottom-width:2px}
+.badge{display:inline-block;min-width:22px;padding:1px 6px;margin-left:6px;background:var(--bg);color:var(--mint);font-size:12px;text-align:center}
+
+/* HERO */
+.hero{padding:70px 0 50px}
+.hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:28px}
+.hero-main{
+  background:linear-gradient(135deg,var(--pink),#d6338a);
+  border:4px solid var(--pink-soft);
+  padding:44px;position:relative;overflow:hidden;
+  box-shadow:8px 8px 0 #000a;
+}
+.hero-main:after{content:"";position:absolute;right:-40px;bottom:-40px;width:220px;height:220px;
+  background:repeating-conic-gradient(rgba(255,255,255,.12) 0 25%,transparent 0 50%) 0 0/40px 40px;transform:rotate(12deg)}
+.hero-main h1{font-family:var(--px);font-size:clamp(30px,5vw,52px);line-height:1.05;color:#fff;text-shadow:4px 4px 0 #8a1c58}
+.hero-main p{margin:16px 0 26px;max-width:460px;color:#fff3fa;font-weight:500;position:relative;z-index:1}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:1}
+.btn{display:inline-block;border:0;padding:13px 22px;font-family:var(--px);font-size:14px;font-weight:700;transition:.1s}
+.btn-mint{background:var(--mint);color:#06382b;border-bottom:5px solid #2fb08a}
+.btn-dark{background:var(--bg);color:#fff;border-bottom:5px solid #000}
+.btn-pink{background:var(--pink);color:#2a0a1c;border-bottom:5px solid #b32c74}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(3px);border-bottom-width:2px}
+.btn[disabled]{opacity:.6;pointer-events:none}
+.hero-side{display:flex;flex-direction:column;gap:16px}
+.side-box{background:var(--card);border:4px solid var(--line);padding:22px;flex:1;box-shadow:6px 6px 0 #000a}
+.side-box h3{font-family:var(--px);font-size:15px;color:var(--mint);margin-bottom:8px}
+.side-box p{color:var(--muted);font-size:14px}
+.ip{margin-top:10px;display:flex;gap:8px;align-items:center;background:var(--bg);padding:10px 12px;border:2px dashed var(--line);font-family:var(--px);font-size:14px;color:var(--pink-soft);justify-content:space-between}
+.ip button{background:var(--mint);border:0;color:#06382b;font-family:var(--px);font-size:11px;padding:6px 10px}
+
+/* TITLES */
+.title{display:flex;align-items:center;gap:18px;margin:46px 0 26px}
+.title i{flex:1;height:4px;background:var(--line)}
+.title b{font-family:var(--px);font-size:20px;color:var(--text)}
+
+/* TABS */
+.tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+.tab{background:var(--card);color:var(--muted);border:3px solid var(--line);padding:10px 20px;font-family:var(--px);font-size:13px;transition:.12s}
+.tab:hover{color:var(--text)}
+.tab.on{background:var(--mint);color:#06382b;border-color:var(--mint-soft)}
+
+/* PRODUCTS */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+.card{background:var(--card);border:4px solid var(--line);display:flex;flex-direction:column;box-shadow:6px 6px 0 #000a;transition:.15s;position:relative}
+.card:hover{transform:translateY(-4px);border-color:var(--pink)}
+.card-img{height:150px;display:grid;place-items:center;font-size:68px;background:var(--card2);border-bottom:4px solid var(--line);position:relative}
+.tag{position:absolute;top:10px;left:10px;background:var(--pink);color:#2a0a1c;font-family:var(--px);font-size:10px;padding:4px 8px}
+.card-body{padding:18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card h4{font-family:var(--px);font-size:17px;color:var(--text)}
+.card ul{list-style:none;color:var(--muted);font-size:13px;flex:1}
+.card li:before{content:"▸ ";color:var(--mint)}
+.card .val{background:var(--bg);color:var(--mint);font-family:var(--px);font-size:11px;text-align:center;padding:6px}
+
+/* KITS */
+.kits{display:grid;gap:14px}
+details{background:var(--card);border:4px solid var(--line)}
+details[open]{border-color:var(--mint)}
+summary{list-style:none;cursor:pointer;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+summary::-webkit-details-marker{display:none}
+summary .k{font-family:var(--px);font-size:16px;color:var(--pink-soft)}
+summary .r{font-size:13px;color:var(--muted)}
+summary .r b{color:var(--mint)}
+.kit-items{padding:4px 22px 20px 38px;color:var(--text);font-size:14px}
+.kit-items li{margin:3px 0}
+
+/* INFO */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.step{background:var(--card);border:4px solid var(--line);padding:22px}
+.step .n{font-family:var(--px);font-size:30px;color:var(--pink)}
+.step h5{font-family:var(--px);font-size:14px;margin:6px 0;color:var(--mint)}
+.step p{font-size:13px;color:var(--muted)}
+
+/* FOOTER */
+footer{margin-top:70px;border-top:4px solid var(--line);background:var(--bg2);padding:34px 0;text-align:center;color:var(--muted);font-size:13px}
+footer .logo{display:inline-block;margin-bottom:10px}
+
+/* DRAWER */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:90;display:none}
+.overlay.show{display:block}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(420px,100%);background:var(--bg2);border-left:4px solid var(--pink);z-index:100;transform:translateX(100%);transition:.25s;display:flex;flex-direction:column}
+.drawer.show{transform:none}
+.drawer-h{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:4px solid var(--line)}
+.drawer-h b{font-family:var(--px);font-size:17px;color:var(--pink)}
+.x{background:none;border:0;color:var(--muted);font-size:28px;line-height:1}
+.x:hover{color:var(--text)}
+.items{flex:1;overflow:auto;padding:16px 20px;display:flex;flex-direction:column;gap:12px}
+.empty{text-align:center;color:var(--muted);margin-top:50px;font-family:var(--px);font-size:13px}
+.line{display:flex;gap:12px;align-items:center;background:var(--card);border:3px solid var(--line);padding:10px}
+.line .ic{font-size:30px;width:46px;text-align:center}
+.line .t{flex:1;min-width:0}
+.line .t b{display:block;font-family:var(--px);font-size:12px;color:var(--text)}
+.line .t small{color:var(--mint);font-weight:600}
+.qty{display:flex;align-items:center;gap:6px}
+.qty button{width:26px;height:26px;background:var(--bg);border:2px solid var(--line);color:var(--text);font-weight:700}
+.qty button:hover{border-color:var(--mint)}
+.qty span{min-width:20px;text-align:center;font-weight:600}
+.drawer-f{padding:18px 20px;border-top:4px solid var(--line)}
+.sum{display:flex;justify-content:space-between;margin-bottom:14px;font-family:var(--px);font-size:15px}
+.sum b{color:var(--mint)}
+.drawer-f .btn{width:100%}
+
+/* MODAL */
+.modal{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.75)}
+.modal.show{display:flex}
+.modal-box{background:var(--bg2);border:4px solid var(--mint);width:min(480px,100%);max-height:94vh;overflow:auto;padding:26px;position:relative;box-shadow:8px 8px 0 #000a}
+.modal-box h3{font-family:var(--px);font-size:18px;color:var(--mint);margin-bottom:6px}
+.modal-box .x{position:absolute;top:10px;right:14px}
+.sub{color:var(--muted);font-size:13px;margin-bottom:16px}
+label{display:block;font-family:var(--px);font-size:11px;color:var(--pink-soft);margin:12px 0 5px}
+input[type=text],input[type=email],select{width:100%;background:var(--bg);color:var(--text);border:3px solid var(--line);padding:11px 12px;font-family:'Poppins',sans-serif;font-size:14px;outline:0}
+input:focus,select:focus{border-color:var(--mint)}
+.chk{display:flex;gap:10px;align-items:flex-start;margin:14px 0;font-size:12px;color:var(--muted)}
+.chk input{margin-top:3px;accent-color:var(--pink)}
+.summary{background:var(--card);border:3px dashed var(--line);padding:12px;margin:14px 0;font-size:13px}
+.summary div{display:flex;justify-content:space-between;gap:10px}
+.summary .tot{border-top:2px solid var(--line);margin-top:8px;padding-top:8px;font-family:var(--px);color:var(--mint)}
+.err{color:var(--danger);font-size:13px;margin-top:10px;min-height:18px}
+.done{text-align:center;padding:10px 0}
+.done .big{font-size:60px}
+.hp{position:absolute;left:-9999px;opacity:0}
+
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,120px);background:var(--mint);color:#06382b;font-family:var(--px);font-size:13px;padding:12px 20px;border:3px solid var(--mint-soft);z-index:200;transition:.25s}
+.toast.show{transform:translate(-50%,0)}
+
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr}
+  .menu{display:none}
+  .hero-main{padding:30px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-in">
+    <a href="#top" class="logo">FLORES<span>MC</span></a>
+    <nav class="menu">
+      <a href="#sklep">SKLEP</a>
+      <a href="#kity">KITY</a>
+      <a href="#jak">JAK KUPIĆ</a>
+    </nav>
+    <button class="cart-btn" id="openCart" aria-label="Otwórz koszyk">KOSZYK<span class="badge" id="badge">0</span></button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-main">
+      <h1>FLORES MC<br>SHOP</h1>
+      <p>Oficjalny sklep serwera Flores MC. Kup rangę, zdobądź klucze do skrzyń i wspieraj rozwój serwera.</p>
+      <div class="hero-actions">
+        <a href="#sklep" class="btn btn-dark">ZOBACZ SKLEP</a>
+        <button class="btn btn-mint" id="copyIp">SKOPIUJ IP</button>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="side-box">
+        <h3>ADRES SERWERA</h3>
+        <p>Wersja Minecraft 1.21.4</p>
+        <div class="ip"><span id="ipText"></span><button id="copyIp2">KOPIUJ</button></div>
+      </div>
+      <div class="side-box">
+        <h3>SZYBKIE ZAMÓWIENIE</h3>
+        <p>Wybierz produkt, wpisz nick z gry i wyślij zamówienie. Resztę załatwiamy mailowo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sklep" class="container">
+  <div class="title"><i></i><b class="px">SKLEP</b><i></i></div>
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-cat="rangi">RANGI</button>
+    <button class="tab" data-cat="klucze">KLUCZE</button>
+  </div>
+  <div class="grid" id="products"></div>
+</section>
+
+<section id="kity" class="container">
+  <div class="title"><i></i><b class="px">KITY NA SERWERZE</b><i></i></div>
+  <p class="sub" style="text-align:center;margin-bottom:22px">Kliknij kit, aby zobaczyć zawartość. Kity odbierasz komendą w grze.</p>
+  <div class="kits" id="kits"></div>
+</section>
+
+<section id="jak" class="container">
+  <div class="title"><i></i><b class="px">JAK KUPIĆ?</b><i></i></div>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h5>WYBIERZ</h5><p>Dodaj do koszyka rangę lub klucze.</p></div>
+    <div class="step"><div class="n">2</div><h5>PODAJ NICK</h5><p>Wpisz dokładny nick z gry i swój adres e-mail.</p></div>
+    <div class="step"><div class="n">3</div><h5>WYŚLIJ ZAMÓWIENIE</h5><p>Zamówienie trafia do administracji, a Ty płacisz BLIK-iem na telefon (numer pokażemy po wysłaniu zamówienia).</p></div>
+    <div class="step"><div class="n">4</div><h5>ODBIERZ</h5><p>Po zaksięgowaniu wpłaty nadajemy produkt na Twoim koncie w grze.</p></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="logo">FLORES<span>MC</span> SHOP</div>
+    <p>Serwer Flores MC nie jest w żaden sposób powiązany z firmą Mojang lub Microsoft.</p>
+    <p style="margin-top:6px">© 2026 Flores MC SHOP. Wszelkie prawa zastrzeżone.</p>
+  </div>
+</footer>
+
+<!-- CART -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Koszyk">
+  <div class="drawer-h"><b>TWÓJ KOSZYK</b><button class="x" id="closeCart" aria-label="Zamknij">×</button></div>
+  <div class="items" id="items"></div>
+  <div class="drawer-f">
+    <div class="sum"><span>W SUMIE</span><b id="total">0,00 ZŁ</b></div>
+    <button class="btn btn-mint" id="checkout">ZAMAWIAM</button>
+  </div>
+</aside>
+
+<!-- CHECKOUT -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <button class="x" id="closeModal" aria-label="Zamknij">×</button>
+    <div id="formView">
+      <h3>FINALIZACJA ZAMÓWIENIA</h3>
+      <p class="sub">Podaj dane, a my wyślemy Ci instrukcję płatności na e-mail.</p>
+      <form id="orderForm" novalidate>
+        <label for="nick">NICK Z GRY</label>
+        <input type="text" id="nick" maxlength="16" placeholder="np. Steve_123" autocomplete="off">
+        <label for="email">E-MAIL</label>
+        <input type="email" id="email" placeholder="twoj@email.pl" autocomplete="email">
+        <label for="pay">PREFEROWANA METODA PŁATNOŚCI</label>
+        <select id="pay">
+          <option>BLIK na telefon</option>
+          <option>Przelew bankowy</option>
+        </select>
+        <div class="summary" id="summary"></div>
+        <label class="chk" style="font-family:'Poppins';text-transform:none;font-size:12px;margin:14px 0">
+          <input type="checkbox" id="tos">
+          <span>Akceptuję regulamin sklepu i rozumiem, że produkty cyfrowe są nadawane po zaksięgowaniu płatności.</span>
+        </label>
+        <input type="text" class="hp" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="err" id="err"></div>
+        <button type="submit" class="btn btn-pink" id="sendBtn" style="width:100%">WYŚLIJ ZAMÓWIENIE</button>
+      </form>
+    </div>
+    <div id="doneView" class="done" style="display:none">
+      <div class="big">✅</div>
+      <h3>ZAMÓWIENIE WYSŁANE!</h3>
+      <div class="summary" id="payInfo" style="text-align:left"></div>
+      <p class="sub">Po zaksięgowaniu wpłaty nadamy produkt na Twoim koncie w grze. W razie pytań odpowiemy na Twój e-mail (sprawdź też spam).</p>
+      <button class="btn btn-mint" id="doneBtn">ZAMKNIJ</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ================= KONFIGURACJA – EDYTUJ TUTAJ ================= */
+const SHOP_NAME  = "Flores MC SHOP";
+const SERVER_IP  = "FloresMc.zzux.com";          // adres serwera
+const ORDER_MAIL = "FloresMC.zzux.com@protonmail.com";   // adres, na który przychodzą zamówienia
+const PAY_PHONE  = "";   // <- WPISZ numer telefonu do BLIK-a na telefon, np. "123 456 789"
+
+// Produkty. Ranga: cat:"rangi". Klucze: cat:"klucze". Ceny w zł.
+const PRODUCTS = [
+  {id:"gvip",   cat:"rangi",  name:"RANGA GVIP",   price:30, icon:"🥉", tag:"START",
+   desc:["Ranga GVIP na 30 dni","Dostęp do /kit gvip (co 24h)","Żelazny ekwipunek + 16 złotych jabłek"]},
+  {id:"vip",    cat:"rangi",  name:"RANGA VIP",    price:44, icon:"🥈",
+   desc:["Ranga VIP na 30 dni","Dostęp do /kit vip (co 24h)","Diamentowy ekwipunek + perły i TNT"]},
+  {id:"svip",   cat:"rangi",  name:"RANGA SVIP",   price:55, icon:"🥇", tag:"POPULARNA",
+   desc:["Ranga SVIP na 30 dni","Dostęp do /kit svip (co 24h)","Pełna diamentowa zbroja + Kox"]},
+  {id:"flores", cat:"rangi",  name:"RANGA FLORES", price:80, icon:"👑", tag:"TOP",
+   desc:["Ranga FLORES na 30 dni","Dostęp do /kit flores (co 12h)","Pełny netheryt + totem + Kox"]},
+
+  {id:"k-zwykly",     cat:"klucze", name:"KLUCZ ZWYKŁY",     price:5,  icon:"🗝️", desc:["Otwiera zwykłą skrzynię","Dowolna liczba kluczy"]},
+  {id:"k-epicki",     cat:"klucze", name:"KLUCZ EPICKI",     price:12, icon:"🔑", tag:"HIT", desc:["Otwiera epicką skrzynię","Dowolna liczba kluczy"]},
+  {id:"k-legendarny", cat:"klucze", name:"KLUCZ LEGENDARNY", price:25, icon:"✨", desc:["Otwiera legendarną skrzynię","Dowolna liczba kluczy"]},
+  {id:"k-flores",     cat:"klucze", name:"KLUCZ FLORES",     price:40, icon:"🌸", tag:"NOWOŚĆ", desc:["Otwiera skrzynię Flores","Najlepsze nagrody"]}
+];
+
+const KITS = [
+  {cmd:"/kit gracz",  who:"Dostępny dla każdego", cd:"co 24h", items:[
+    "Kamienny miecz (Ostrość I)","Kamienny kilof, siekiera, łopata","32x Pieczona wołowina","Skórzana zbroja (cały komplet)"]},
+  {cmd:"/kit gvip",   who:"Od rangi GVIP", price:30, cd:"co 24h", items:[
+    "Żelazny miecz (Ostrość II, Odrzut I)","Żelazny kilof (Wydajność II, Unbreaking I)","Żelazna zbroja (Ochrona I)",
+    "16x Złocone jabłko","64x Pieczony schab","1x Enderchest"]},
+  {cmd:"/kit vip",    who:"Od rangi VIP", price:44, cd:"co 24h", items:[
+    "Diamentowy miecz (Ostrość III, Zaklęty ogień I)","Diamentowy kilof (Wydajność III, Szczęście I)",
+    "Diamentowy kirys i spodnie (Ochrona II)","Diamentowy hełm i buty (Ochrona II)",
+    "24x Złocone jabłko","3x Perła kresu","16x TNT"]},
+  {cmd:"/kit svip",   who:"Od rangi SVIP", price:55, cd:"co 24h", items:[
+    "Diamentowy miecz (Ostrość IV, Zaklęty ogień II, Unbreaking II)","Diamentowy kilof (Wydajność IV, Szczęście II, Unbreaking II)",
+    "Pełna diamentowa zbroja (Ochrona III, Unbreaking II)","32x Złocone jabłko","2x Zaklęte złote jabłko (Kox)",
+    "8x Perła kresu","32x TNT"]},
+  {cmd:"/kit flores", who:"Tylko ranga FLORES", price:80, cd:"co 12h", items:[
+    "Netherytowy miecz (Ostrość V, Zaklęty ogień II, Unbreaking III, Mending)",
+    "Netherytowy kilof (Wydajność V, Szczęście III, Unbreaking III)",
+    "Pełna netherytowa zbroja (Ochrona IV, Unbreaking III, Mending)",
+    "64x Złocone jabłko","5x Zaklęte złote jabłko (Kox)","16x Perła kresu","1x Totem nieśmiertelności",
+    "64x TNT + Zapalniczka (Unbreaking III)"]}
+];
+/* =============================================================== */
+
+const $ = s => document.querySelector(s);
+const fmt = n => n.toFixed(2).replace(".", ",") + " ZŁ";
+let cart = {};
+try { cart = JSON.parse(localStorage.getItem("flores_cart") || "{}"); } catch(e){ cart = {}; }
+const save = () => { try { localStorage.setItem("flores_cart", JSON.stringify(cart)); } catch(e){} };
+const byId = id => PRODUCTS.find(p => p.id === id);
+
+function toast(msg){
+  const t = $("#toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(toast.t); toast.t = setTimeout(()=>t.classList.remove("show"), 1800);
+}
+
+/* ---- produkty ---- */
+let cat = "rangi";
+function renderProducts(){
+  $("#products").innerHTML = PRODUCTS.filter(p=>p.cat===cat).map(p=>`
+    <div class="card">
+      <div class="card-img">${p.tag?`<span class="tag">${p.tag}</span>`:""}${p.icon}</div>
+      <div class="card-body">
+        <h4>${p.name}</h4>
+        <ul>${p.desc.map(d=>`<li>${d}</li>`).join("")}</ul>
+        <button class="btn btn-mint" data-add="${p.id}">${fmt(p.price)} – DODAJ</button>
+      </div>
+    </div>`).join("");
+}
+document.addEventListener("click", e=>{
+  const add = e.target.closest("[data-add]");
+  if(add){ cart[add.dataset.add] = Math.min((cart[add.dataset.add]||0)+1, 100); save(); renderCart(); toast("Dodano do koszyka"); }
+  const tab = e.target.closest(".tab");
+  if(tab){ cat = tab.dataset.cat; document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("on", t===tab)); renderProducts(); }
+  const q = e.target.closest("[data-q]");
+  if(q){
+    const id = q.dataset.id, d = +q.dataset.q;
+    cart[id] = (cart[id]||0) + d;
+    if(cart[id] <= 0) delete cart[id];
+    if(cart[id] > 100) cart[id] = 100;
+    save(); renderCart();
+  }
+});
+
+/* ---- kity ---- */
+$("#kits").innerHTML = KITS.map(k=>`
+  <details>
+    <summary>
+      <span class="k">${k.cmd}</span>
+      <span class="r">${k.who}${k.price?` <b>[${k.price} zł]</b>`:""} · ${k.cd}</span>
+    </summary>
+    <ul class="kit-items">${k.items.map(i=>`<li>${i}</li>`).join("")}</ul>
+  </details>`).join("");
+
+/* ---- koszyk ---- */
+function totals(){
+  let sum = 0, count = 0;
+  for(const id in cart){ const p = byId(id); if(p){ sum += p.price*cart[id]; count += cart[id]; } }
+  return {sum, count};
+}
+function renderCart(){
+  const ids = Object.keys(cart).filter(id=>byId(id));
+  $("#items").innerHTML = ids.length ? ids.map(id=>{
+    const p = byId(id);
+    return `<div class="line"><div class="ic">${p.icon}</div>
+      <div class="t"><b>${p.name}</b><small>${fmt(p.price*cart[id])}</small></div>
+      <div class="qty"><button data-id="${id}" data-q="-1">−</button><span>${cart[id]}</span><button data-id="${id}" data-q="1">+</button></div></div>`;
+  }).join("") : `<div class="empty">KOSZYK JEST PUSTY</div>`;
+  const t = totals();
+  $("#total").textContent = fmt(t.sum);
+  $("#badge").textContent = t.count;
+  $("#checkout").disabled = !t.count;
+  $("#checkout").style.opacity = t.count ? 1 : .5;
+}
+const openDrawer = () => { $("#drawer").classList.add("show"); $("#overlay").classList.add("show"); };
+const closeDrawer = () => { $("#drawer").classList.remove("show"); $("#overlay").classList.remove("show"); };
+$("#openCart").onclick = openDrawer;
+$("#closeCart").onclick = closeDrawer;
+$("#overlay").onclick = closeDrawer;
+
+/* ---- zamówienie ---- */
+function openModal(){
+  const ids = Object.keys(cart).filter(id=>byId(id));
+  if(!ids.length) return;
+  $("#summary").innerHTML = ids.map(id=>{const p=byId(id);return `<div><span>${cart[id]}× ${p.name}</span><span>${fmt(p.price*cart[id])}</span></div>`}).join("")
+    + `<div class="tot"><span>RAZEM</span><span>${fmt(totals().sum)}</span></div>`;
+  $("#err").textContent = "";
+  $("#formView").style.display = ""; $("#doneView").style.display = "none";
+  closeDrawer(); $("#modal").classList.add("show");
+}
+const closeModal = () => $("#modal").classList.remove("show");
+$("#checkout").onclick = openModal;
+$("#closeModal").onclick = closeModal;
+$("#doneBtn").onclick = closeModal;
+$("#modal").addEventListener("click", e=>{ if(e.target.id==="modal") closeModal(); });
+
+$("#orderForm").addEventListener("submit", async e=>{
+  e.preventDefault();
+  const err = $("#err"), nick = $("#nick").value.trim(), email = $("#email").value.trim();
+  if($("#hp").value) return;                                   // pułapka na boty
+  if(!/^[A-Za-z0-9_]{3,16}$/.test(nick)) return err.textContent = "Nick: 3–16 znaków, tylko litery, cyfry i _";
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return err.textContent = "Podaj poprawny adres e-mail.";
+  if(!$("#tos").checked) return err.textContent = "Musisz zaakceptować regulamin.";
+  const ids = Object.keys(cart).filter(id=>byId(id));
+  if(!ids.length) return err.textContent = "Koszyk jest pusty.";
+
+  const order = ids.map(id=>{const p=byId(id);return `${cart[id]}x ${p.name} – ${fmt(p.price*cart[id])}`}).join("\n");
+  const btn = $("#sendBtn"); btn.disabled = true; btn.textContent = "WYSYŁAM...";
+  err.textContent = "";
+  try{
+    const res = await fetch("https://formsubmit.co/ajax/" + encodeURIComponent(ORDER_MAIL), {
+      method:"POST",
+      headers:{"Content-Type":"application/json","Accept":"application/json"},
+      body: JSON.stringify({
+        _subject: `Nowe zamówienie ${SHOP_NAME} – ${nick}`,
+        _template: "table",
+        _captcha: "false",
+        "Nick z gry": nick,
+        email: email,
+        "Metoda płatności": $("#pay").value,
+        "Zamówienie": order,
+        "Komendy do nadania (konsola/czat)": ids.filter(id=>byId(id).cat==="rangi").map(id=>`/ranga ${nick} ${id} ${30*cart[id]}`).join("\n") || "brak rang w zamówieniu",
+        "Suma": fmt(totals().sum),
+        "Data": new Date().toLocaleString("pl-PL")
+      })
+    });
+    const data = await res.json().catch(()=>({}));
+    if(!res.ok || data.success === "false") throw new Error(data.message || "Błąd wysyłki");
+    const paidTotal = totals().sum, paidMethod = $("#pay").value;
+    const info = $("#payInfo"); info.textContent = "";
+    const row = (a,b) => { const d = document.createElement("div"); const s1 = document.createElement("span"), s2 = document.createElement("span"); s1.textContent = a; s2.textContent = b; d.append(s1,s2); info.appendChild(d); };
+    if(paidMethod === "BLIK na telefon" && PAY_PHONE){
+      row("Płatność:", "BLIK na telefon");
+      row("Numer telefonu:", PAY_PHONE);
+      row("Kwota:", fmt(paidTotal));
+      row("Tytuł przelewu:", nick);
+    } else {
+      row("Płatność:", paidMethod);
+      row("Kwota:", fmt(paidTotal));
+      row("Dane do wpłaty:", "wyślemy na Twój e-mail");
+    }
+    cart = {}; save(); renderCart();
+    $("#formView").style.display = "none"; $("#doneView").style.display = "";
+    $("#orderForm").reset();
+  }catch(ex){
+    err.textContent = "Nie udało się wysłać zamówienia. Spróbuj ponownie za chwilę.";
+  }finally{
+    btn.disabled = false; btn.textContent = "WYŚLIJ ZAMÓWIENIE";
+  }
+});
+
+/* ---- IP ---- */
+$("#ipText").textContent = SERVER_IP;
+function copyIp(){
+  const done = () => toast("IP skopiowane do schowka!");
+  if(navigator.clipboard) navigator.clipboard.writeText(SERVER_IP).then(done, done); else done();
+}
+$("#copyIp").onclick = copyIp; $("#copyIp2").onclick = copyIp;
+
+document.addEventListener("keydown", e=>{ if(e.key==="Escape"){ closeDrawer(); closeModal(); } });
+
+renderProducts(); renderCart();
+</script>
+</body>
+</html>
