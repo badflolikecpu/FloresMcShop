@@ -149,6 +149,7 @@ summary .r b{color:var(--mint)}
 /* FOOTER */
 footer{margin-top:70px;border-top:4px solid var(--line);background:var(--bg2);padding:34px 0;text-align:center;color:var(--muted);font-size:13px}
 footer .logo{display:inline-block;margin-bottom:10px}
+.policy-notice{color:var(--danger);font-family:var(--px);font-size:11px;margin-top:10px}
 
 /* DRAWER */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:90;display:none}
@@ -265,7 +266,7 @@ input:focus,select:focus{border-color:var(--mint)}
     <div class="step"><div class="n">1</div><h5>WYBIERZ</h5><p>Dodaj do koszyka rangę lub klucze.</p></div>
     <div class="step"><div class="n">2</div><h5>PODAJ NICK</h5><p>Wpisz dokładny nick z gry i swój adres e-mail.</p></div>
     <div class="step"><div class="n">3</div><h5>WYŚLIJ ZAMÓWIENIE</h5><p>Zamówienie trafia do administracji, a dane do przelewu/płatności otrzymasz w wiadomości e-mail.</p></div>
-    <div class="step"><div class="n">4</div><h5>ODBIERZ</h5><p>Po zaksięgowaniu wpłaty nadajemy produkt na Twoim koncie w grze.</p></div>
+    <div class="step"><div class="n">4</div><h5>ODBIERZ & POLICY</h5><p>Po zaksięgowaniu wpłaty nadajemy produkt w grze. <b>Brak zwrotów po realizacji!</b></p></div>
   </div>
 </section>
 </main>
@@ -274,6 +275,7 @@ input:focus,select:focus{border-color:var(--mint)}
   <div class="container">
     <div class="logo">FLORES<span>MC</span> SHOP</div>
     <p>Serwer Flores MC nie jest w żaden sposób powiązany z firmą Mojang lub Microsoft.</p>
+    <p class="policy-notice">POLITYKA SKLEPU: Produkty cyfrowe (rangi, klucze) są nadawane bezpośrednio po zaksięgowaniu płatności. BRAK ZWROTÓW po aktywacji w grze.</p>
     <p style="margin-top:6px">© 2026 Flores MC SHOP. Wszelkie prawa zastrzeżone.</p>
   </div>
 </footer>
@@ -309,7 +311,7 @@ input:focus,select:focus{border-color:var(--mint)}
         <div class="summary" id="summary"></div>
         <label class="chk" style="font-family:'Poppins';text-transform:none;font-size:12px;margin:14px 0">
           <input type="checkbox" id="tos">
-          <span>Akceptuję regulamin sklepu i rozumiem, że produkty cyfrowe są nadawane po zaksięgowaniu płatności.</span>
+          <span>Akceptuję regulamin sklepu. Rozumiem, że kupuję treść cyfrową i po jej nadaniu w grze <b>NIE MA MOŻLIWOŚCI ZWROTU</b> środków.</span>
         </label>
         <input type="text" class="hp" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="err" id="err"></div>
@@ -323,7 +325,7 @@ input:focus,select:focus{border-color:var(--mint)}
         <div><span>Status:</span><span>Oczekiwanie na płatność</span></div>
         <div style="margin-top:6px"><span>Informacja:</span><span style="color:var(--mint)">Dane do przelewu zostały wysłane na podany e-mail!</span></div>
       </div>
-      <p class="sub">Po zaksięgowaniu wpłaty nadamy produkt na Twoim koncie w grze. W razie pytań sprawdź skrzynkę (oraz folder spam).</p>
+      <p class="sub">Po zaksięgowaniu wpłaty nadamy produkt na Twoim koncie w grze. Przypomnienie: brak zwrotów po aktywacji w grze.</p>
       <button class="btn btn-mint" id="doneBtn">ZAMKNIJ</button>
     </div>
   </div>
@@ -416,7 +418,7 @@ document.addEventListener("click", e=>{
   const add = e.target.closest("[data-add]");
   if(add){ cart[add.dataset.add] = Math.min((cart[add.dataset.add]||0)+1, 100); save(); renderCart(); toast("Dodano do koszyka"); }
   const tab = e.target.closest(".tab");
-  if(tab){ cat = tab.dataset.cat; document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("on", t===tab)); renderProducts(); }
+  if(tab){ cat = tab.dataset.cat; documentquerySelectorAll(".tab").forEach(t=>t.classList.toggle("on", t===tab)); renderProducts(); }
   const q = e.target.closest("[data-q]");
   if(q){
     const id = q.dataset.id, d = +q.dataset.q;
@@ -485,7 +487,7 @@ $("#orderForm").addEventListener("submit", async e=>{
   if($("#hp").value) return;                                   // pułapka na boty
   if(!/^[A-Za-z0-9_]{3,16}$/.test(nick)) return err.textContent = "Nick: 3–16 znaków, tylko litery, cyfry i _";
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return err.textContent = "Podaj poprawny adres e-mail.";
-  if(!$("#tos").checked) return err.textContent = "Musisz zaakceptować regulamin.";
+  if(!$("#tos").checked) return err.textContent = "Musisz zaakceptować regulamin i brak zwrotów.";
   const ids = Object.keys(cart).filter(id=>byId(id));
   if(!ids.length) return err.textContent = "Koszyk jest pusty.";
 
@@ -505,6 +507,7 @@ $("#orderForm").addEventListener("submit", async e=>{
         "Zamówienie": order,
         "Komendy do nadania (konsola/czat)": ids.filter(id=>byId(id).cat==="rangi").map(id=>`/ranga ${nick} ${id} ${30*cart[id]}`).join("\n") || "brak rang w zamówieniu",
         "Suma": fmt(totals().sum),
+        "Zgoda na brak zwrotu": "TAK",
         "Data": new Date().toLocaleString("pl-PL")
       })
     });
