@@ -99,11 +99,14 @@ button{font-family:inherit;cursor:pointer}
 .card:hover{transform:translateY(-4px);border-color:var(--pink)}
 .card-img{height:150px;display:grid;place-items:center;font-size:68px;background:var(--card2);border-bottom:4px solid var(--line);position:relative}
 .tag{position:absolute;top:10px;left:10px;background:var(--pink);color:#2a0a1c;font-family:var(--px);font-size:10px;padding:4px 8px}
+.tag-sale{position:absolute;top:10px;right:10px;background:#ff5d73;color:#fff;font-family:var(--px);font-size:10px;padding:4px 8px}
 .card-body{padding:18px;display:flex;flex-direction:column;gap:10px;flex:1}
 .card h4{font-family:var(--px);font-size:17px;color:var(--text)}
 .card ul{list-style:none;color:var(--muted);font-size:13px;flex:1}
 .card li:before{content:"▸ ";color:var(--mint)}
-.card .val{background:var(--bg);color:var(--mint);font-family:var(--px);font-size:11px;text-align:center;padding:6px}
+.price-box{display:flex;align-items:center;gap:8px;justify-content:center;background:var(--bg);padding:6px;border:2px dashed var(--line)}
+.old-price{text-decoration:line-through;color:var(--muted);font-family:var(--px);font-size:11px}
+.new-price{color:var(--mint);font-family:var(--px);font-size:13px;font-weight:700}
 
 /* KITS */
 .kits{display:grid;gap:14px}
@@ -323,7 +326,7 @@ const PRODUCTS = [
    desc:["Ranga VIP na 30 dni","Dostęp do /kit vip (co 24h)","Diamentowy ekwipunek + perły i TNT"]},
   {id:"svip",   cat:"rangi",  name:"RANGA SVIP",   price:55, icon:"🥇", tag:"POPULARNA",
    desc:["Ranga SVIP na 30 dni","Dostęp do /kit svip (co 24h)","Pełna diamentowa zbroja + Kox"]},
-  {id:"flores", cat:"rangi",  name:"RANGA FLORES", price:80, icon:"👑", tag:"TOP",
+  {id:"flores", cat:"rangi",  name:"RANGA FLORES", price:80, oldPrice:100, icon:"👑", tag:"TOP", tagSale:"-20%",
    desc:["Zawiera WSZYSTKIE rangi (GVIP, VIP, SVIP)","Dostęp do /kit flores (co 12h)","Pełny netheryt + totem + Kox"]},
 
   {id:"k-rzadki",     cat:"klucze", name:"KLUCZ RZADKI",     price:8,  icon:"🗝️", desc:["Otwiera rzadką skrzynię","Dowolna liczba kluczy"]},
@@ -372,11 +375,18 @@ let cat = "rangi";
 function renderProducts(){
   $("#products").innerHTML = PRODUCTS.filter(p=>p.cat===cat).map(p=>`
     <div class="card">
-      <div class="card-img">${p.tag?`<span class="tag">${p.tag}</span>`:""}${p.icon}</div>
+      <div class="card-img">
+        ${p.tag?`<span class="tag">${p.tag}</span>`:""}
+        ${p.tagSale?`<span class="tag-sale">${p.tagSale}</span>`:""}
+        ${p.icon}
+      </div>
       <div class="card-body">
         <h4>${p.name}</h4>
         <ul>${p.desc.map(d=>`<li>${d}</li>`).join("")}</ul>
-        <button class="btn btn-mint" data-add="${p.id}">${fmt(p.price)} – DODAJ</button>
+        <button class="btn btn-mint" data-add="${p.id}">
+          ${p.oldPrice ? `<span class="old-price">${fmt(p.oldPrice)}</span> ` : ""}
+          ${fmt(p.price)} – DODAJ
+        </button>
       </div>
     </div>`).join("");
 }
