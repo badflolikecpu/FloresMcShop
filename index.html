@@ -355,7 +355,7 @@ input:focus,select:focus{border-color:var(--mint)}
       <p>2. Złożenie zamówienia jest jednoznaczne z akceptacją niniejszego Regulaminu.</p>
 
       <h4>§ 2. Przedmiot transakcji i charakter usług</h4>
-      <p>1. Przedmiotem sprzedaży w Sklepie są wirtualne rangi (np. GVIP, VIP, SVIP, Flores) oraz wirtualne klucze do skrzyń (items) nadawane na konta graczy w grze Minecraft.</p>
+      <p>1. Przedmiotem sprzedaży w Sklepie są wirtualne rangi (np. GVIP, VIP, SVIP, Flores) oraz wirtualne klucze do skrzyń nadawane na konta graczy w grze Minecraft.</p>
       <p>2. Wszystkie oferowane przedmioty mają charakter wirtualny i nie posiadają wartości materialnej w świecie rzeczywistym.</p>
 
       <h4>§ 3. Realizacja zamówień i płatności</h4>
@@ -381,23 +381,22 @@ input:focus,select:focus{border-color:var(--mint)}
 /* ================= KONFIGURACJA ================= */
 const SHOP_NAME  = "Flores MC SHOP";
 const SERVER_IP  = "FloresMc.zzux.com";          
-const WEB3FORMS_KEY = "3097a485-b180-4feb-a550-960f487598ce"; // Twój klucz Web3Forms
+const WEB3FORMS_KEY = "3097a485-b180-4feb-a550-960f487598ce";
 
-// Produkty. Ranga: cat:"rangi". Klucze: cat:"klucze". Ceny w zł.
 const PRODUCTS = [
   {id:"gvip",   cat:"rangi",  name:"RANGA GVIP",   price:30, oldPrice:35, icon:"🥉", tag:"START", tagSale:"-14%",
-   desc:[getCitationSource("1") ? "Ranga GVIP na 30 dni" : "Ranga GVIP na 30 dni","Dostęp do /kit gvip (co 24h)","Żelazny ekwipunek + 16 złotych jabłek"]},
+   desc:["Ranga GVIP na 30 dni","Dostęp do /kit gvip (co 24h)","Żelazny ekwipunek + 16 złotych jabłek"]},
   {id:"vip",    cat:"rangi",  name:"RANGA VIP",    price:44, oldPrice:50, icon:"🥈", tagSale:"-12%",
    desc:["Ranga VIP na 30 dni","Dostęp do /kit vip (co 24h)","Diamentowy ekwipunek + perły i TNT"]},
   {id:"svip",   cat:"rangi",  name:"RANGA SVIP",   price:55, oldPrice:65, icon:"🥇", tag:"POPULARNA", tagSale:"-15%",
    desc:["Ranga SVIP na 30 dni","Dostęp do /kit svip (co 24h)","Pełna diamentowa zbroja + Kox"]},
   {id:"flores", cat:"rangi",  name:"RANGA FLORES", price:80, oldPrice:100, icon:"👑", tag:"TOP", tagSale:"-20%",
-   desc:[getCitationSource("1") ? "Zawiera WSZYSTKIE rangi (GVIP, VIP, SVIP)" : "Zawiera WSZYSTKIE rangi (GVIP, VIP, SVIP)","Dostęp do /kit flores (co 12h)","Pełny netheryt + totem + Kox"]},
+   desc:["Zawiera WSZYSTKIE rangi (GVIP, VIP, SVIP)","Dostęp do /kit flores (co 12h)","Pełny netheryt + totem + Kox"]},
 
   {id:"k-rzadki",     cat:"klucze", name:"KLUCZ RZADKI",     price:5,  oldPrice:8,  icon:"🗝️", tagSale:"-37%", desc:["Otwiera rzadką skrzynię","Dowolna liczba kluczy"]},
   {id:"k-mityczny",   cat:"klucze", name:"KLUCZ MITYCZNY",   price:15, oldPrice:18, icon:"🔮", tag:"POPULARNY", tagSale:"-17%", desc:["Otwiera mityczną skrzynię","Dowolna liczba kluczy"]},
   {id:"k-legendarny", cat:"klucze", name:"KLUCZ LEGENDARNY", price:25, oldPrice:30, icon:"✨", tagSale:"-17%", desc:["Otwiera legendarną skrzynię","Dowolna liczba kluczy"]},
-  {id:"k-floresowy",  cat:"klucze", name:"KLUCZ FLORESOWY",  price:40, oldPrice:45, icon:"🌸", tag:"TOP", tagSale:"-11%", desc:[getCitationSource("1") ? "Otwiera skrzynię Floresową" : "Otwiera skrzynię Floresową","Najlepsze nagrody na serwerze"]}
+  {id:"k-floresowy",  cat:"klucze", name:"KLUCZ FLORESOWY",  price:40, oldPrice:45, icon:"🌸", tag:"TOP", tagSale:"-11%", desc:["Otwiera skrzynię Floresową","Najlepsze nagrody na serwerze"]}
 ];
 
 const KITS = [
@@ -432,7 +431,7 @@ const byId = id => PRODUCTS.find(p => p.id === id);
 
 function toast(msg){
   const t = $("#toast"); t.textContent = msg; t.classList.add("show");
-  clearTimeout(toast.t); toast.t = setTimeout(()=>t.classList.remove("show"), 1800);
+  clearTimeout(toast.t); t.t = setTimeout(()=>t.classList.remove("show"), 1800);
 }
 
 // Obsługa modala regulaminu
@@ -443,7 +442,6 @@ $("#inlineReg").onclick = openReg;
 $("#closeRegulamin").onclick = closeReg;
 $("#okRegulamin").onclick = closeReg;
 $("#regulaminModal").onclick = e => { if(e.target.id === "regulaminModal") closeReg(); };
-
 
 /* ---- produkty ---- */
 let cat = "rangi";
@@ -538,7 +536,7 @@ $("#modal").addEventListener("click", e=>{ if(e.target.id==="modal") closeModal(
 $("#orderForm").addEventListener("submit", async e=>{
   e.preventDefault();
   const err = $("#err"), nick = $("#nick").value.trim(), email = $("#email").value.trim();
-  if($("#hp").value) return;                                   // pułapka na boty
+  if($("#hp").value) return;
   if(!/^[A-Za-z0-9_]{3,16}$/.test(nick)) return err.textContent = "Nick: 3–16 znaków, tylko litery, cyfry i _";
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return err.textContent = "Podaj poprawny adres e-mail.";
   if(!$("#tos").checked) return err.textContent = "Musisz zaakceptować regulamin i brak zwrotów.";
