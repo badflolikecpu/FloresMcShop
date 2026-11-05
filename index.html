@@ -99,14 +99,25 @@ button{font-family:inherit;cursor:pointer}
 .card:hover{transform:translateY(-4px);border-color:var(--pink)}
 .card-img{height:150px;display:grid;place-items:center;font-size:68px;background:var(--card2);border-bottom:4px solid var(--line);position:relative}
 .tag{position:absolute;top:10px;left:10px;background:var(--pink);color:#2a0a1c;font-family:var(--px);font-size:10px;padding:4px 8px}
-.tag-sale{position:absolute;top:10px;right:10px;background:#ff5d73;color:#fff;font-family:var(--px);font-size:10px;padding:4px 8px}
+.tag-sale{position:absolute;top:10px;right:10px;background:var(--danger);color:#fff;font-family:var(--px);font-size:10px;padding:4px 8px}
 .card-body{padding:18px;display:flex;flex-direction:column;gap:10px;flex:1}
 .card h4{font-family:var(--px);font-size:17px;color:var(--text)}
 .card ul{list-style:none;color:var(--muted);font-size:13px;flex:1}
 .card li:before{content:"▸ ";color:var(--mint)}
-.price-box{display:flex;align-items:center;gap:8px;justify-content:center;background:var(--bg);padding:6px;border:2px dashed var(--line)}
-.old-price{text-decoration:line-through;color:var(--muted);font-family:var(--px);font-size:11px}
-.new-price{color:var(--mint);font-family:var(--px);font-size:13px;font-weight:700}
+
+/* Ceny i przeceny */
+.price-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.old-price {
+  text-decoration: line-through;
+  color: var(--muted);
+  font-size: 11px;
+  font-family: var(--px);
+}
 
 /* KITS */
 .kits{display:grid;gap:14px}
