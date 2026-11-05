@@ -389,36 +389,36 @@ const SERVER_IP  = "FloresMc.zzux.com";
 const WEB3FORMS_KEY = "3097a485-b180-4feb-a550-960f487598ce";
 
 const PRODUCTS = [
-  {id:"gvip",   cat:"rangi",  name:"RANGA GVIP",   price:30, oldPrice:35, icon:"🥉", tag:"START", tagSale:"-14%",
+  {id:"gvip",   cat:"rangi",  name:"RANGA GVIP",   price:15, oldPrice:20, icon:"🥉", tag:"START", tagSale:"-25%",
    desc:["Ranga GVIP na 30 dni","Dostęp do /kit gvip (co 24h)","Żelazny ekwipunek + 16 złotych jabłek"]},
-  {id:"vip",    cat:"rangi",  name:"RANGA VIP",    price:44, oldPrice:50, icon:"🥈", tagSale:"-12%",
+  {id:"vip",    cat:"rangi",  name:"RANGA VIP",    price:22, oldPrice:30, icon:"🥈", tagSale:"-27%",
    desc:["Ranga VIP na 30 dni","Dostęp do /kit vip (co 24h)","Diamentowy ekwipunek + perły i TNT"]},
-  {id:"svip",   cat:"rangi",  name:"RANGA SVIP",   price:55, oldPrice:65, icon:"🥇", tag:"POPULARNA", tagSale:"-15%",
+  {id:"svip",   cat:"rangi",  name:"RANGA SVIP",   price:30, oldPrice:40, icon:"🥇", tag:"POPULARNA", tagSale:"-25%",
    desc:["Ranga SVIP na 30 dni","Dostęp do /kit svip (co 24h)","Pełna diamentowa zbroja + Kox"]},
-  {id:"flores", cat:"rangi",  name:"RANGA FLORES", price:80, oldPrice:100, icon:"👑", tag:"TOP", tagSale:"-20%",
+  {id:"flores", cat:"rangi",  name:"RANGA FLORES", price:45, oldPrice:60, icon:"👑", tag:"TOP", tagSale:"-25%",
    desc:["Zawiera WSZYSTKIE rangi (GVIP, VIP, SVIP)","Dostęp do /kit flores (co 12h)","Pełny netheryt + totem + Kox"]},
 
-  {id:"k-rzadki",     cat:"klucze", name:"KLUCZ RZADKI",     price:5,  oldPrice:8,  icon:"🗝️", tagSale:"-37%", desc:["Otwiera rzadką skrzynię","Dowolna liczba kluczy"]},
-  {id:"k-mityczny",   cat:"klucze", name:"KLUCZ MITYCZNY",   price:15, oldPrice:18, icon:"🔮", tag:"POPULARNY", tagSale:"-17%", desc:["Otwiera mityczną skrzynię","Dowolna liczba kluczy"]},
-  {id:"k-legendarny", cat:"klucze", name:"KLUCZ LEGENDARNY", price:25, oldPrice:30, icon:"✨", tagSale:"-17%", desc:["Otwiera legendarną skrzynię","Dowolna liczba kluczy"]},
-  {id:"k-floresowy",  cat:"klucze", name:"KLUCZ FLORESOWY",  price:40, oldPrice:45, icon:"🌸", tag:"TOP", tagSale:"-11%", desc:["Otwiera skrzynię Floresową","Najlepsze nagrody na serwerze"]}
+  {id:"k-rzadki",     cat:"klucze", name:"KLUCZ RZADKI",     price:3,  oldPrice:4,  icon:"🗝️", tagSale:"-25%", desc:["Otwiera rzadką skrzynię","Dowolna liczba kluczy"]},
+  {id:"k-mityczny",   cat:"klucze", name:"KLUCZ MITYCZNY",   price:7,  oldPrice:9,  icon:"🔮", tag:"POPULARNY", tagSale:"-22%", desc:["Otwiera mityczną skrzynię","Dowolna liczba kluczy"]},
+  {id:"k-legendarny", cat:"klucze", name:"KLUCZ LEGENDARNY", price:12, oldPrice:15, icon:"✨", tagSale:"-20%", desc:["Otwiera legendarną skrzynię","Dowolna liczba kluczy"]},
+  {id:"k-floresowy",  cat:"klucze", name:"KLUCZ FLORESOWY",  price:20, oldPrice:25, icon:"🌸", tag:"TOP", tagSale:"-20%", desc:["Otwiera skrzynię Floresową","Najlepsze nagrody na serwerze"]}
 ];
 
 const KITS = [
   {cmd:"/kit gracz",  who:"Dostępny dla każdego", cd:"co 24h", items:[
     "Kamienny miecz (Ostrość I)","Kamienny kilof, siekiera, łopata","32x Pieczona wołowina","Skórzana zbroja (cały komplet)"]},
-  {cmd:"/kit gvip",   who:"Od rangi GVIP", price:30, cd:"co 24h", items:[
+  {cmd:"/kit gvip",   who:"Od rangi GVIP", price:15, cd:"co 24h", items:[
     "Żelazny miecz (Ostrość II, Odrzut I)","Żelazny kilof (Wydajność II, Unbreaking I)","Żelazna zbroja (Ochrona I)",
     "16x Złocone jabłko","64x Pieczony schab","1x Enderchest"]},
-  {cmd:"/kit vip",    who:"Od rangi VIP", price:44, cd:"co 24h", items:[
+  {cmd:"/kit vip",    who:"Od rangi VIP", price:22, cd:"co 24h", items:[
     "Diamentowy miecz (Ostrość III, Zaklęty ogień I)","Diamentowy kilof (Wydajność III, Szczęście I)",
     "Diamentowy kirys i spodnie (Ochrona II)","Diamentowy hełm i buty (Ochrona II)",
     "24x Złocone jabłko","3x Perła kresu","16x TNT"]},
-  {cmd:"/kit svip",   who:"Od rangi SVIP", price:55, cd:"co 24h", items:[
+  {cmd:"/kit svip",   who:"Od rangi SVIP", price:30, cd:"co 24h", items:[
     "Diamentowy miecz (Ostrość IV, Zaklęty ogień II, Unbreaking II)","Diamentowy kilof (Wydajność IV, Szczęście II, Unbreaking II)",
     "Pełna diamentowa zbroja (Ochrona III, Unbreaking II)","32x Złocone jabłko","2x Zaklęte złote jabłko (Kox)",
     "8x Perła kresu","32x TNT"]},
-  {cmd:"/kit flores", who:"Tylko ranga FLORES", price:80, cd:"co 12h", items:[
+  {cmd:"/kit flores", who:"Tylko ranga FLORES", price:45, cd:"co 12h", items:[
     "Netherytowy miecz (Ostrość V, Zaklęty ogień II, Unbreaking III, Mending)",
     "Netherytowy kilof (Wydajność V, Szczęście III, Unbreaking III)",
     "Pełna netherytowa zbroja (Ochrona IV, Unbreaking III, Mending)",
