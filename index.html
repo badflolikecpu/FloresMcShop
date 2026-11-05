@@ -99,24 +99,32 @@ button{font-family:inherit;cursor:pointer}
 .card:hover{transform:translateY(-4px);border-color:var(--pink)}
 .card-img{height:150px;display:grid;place-items:center;font-size:68px;background:var(--card2);border-bottom:4px solid var(--line);position:relative}
 .tag{position:absolute;top:10px;left:10px;background:var(--pink);color:#2a0a1c;font-family:var(--px);font-size:10px;padding:4px 8px}
-.tag-sale{position:absolute;top:10px;right:10px;background:var(--danger);color:#fff;font-family:var(--px);font-size:10px;padding:4px 8px}
+.tag-sale{position:absolute;top:10px;right:10px;background:var(--danger);color:#fff;font-family:var(--px);font-size:11px;font-weight:700;padding:5px 10px;border:2px solid #fff}
 .card-body{padding:18px;display:flex;flex-direction:column;gap:10px;flex:1}
 .card h4{font-family:var(--px);font-size:17px;color:var(--text)}
 .card ul{list-style:none;color:var(--muted);font-size:13px;flex:1}
 .card li:before{content:"▸ ";color:var(--mint)}
 
-/* Ceny i przeceny */
-.price-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+/* Super widoczna sekcja ceny */
+.price-tag-box{
+  background:var(--bg);
+  border:2px solid var(--line);
+  padding:8px;
+  text-align:center;
+  margin:6px 0;
 }
-.old-price {
-  text-decoration: line-through;
-  color: var(--muted);
-  font-size: 11px;
-  font-family: var(--px);
+.old-price{
+  text-decoration:line-through;
+  color:var(--danger);
+  font-size:13px;
+  font-family:var(--px);
+  margin-right:8px;
+}
+.new-price{
+  color:var(--mint);
+  font-size:16px;
+  font-family:var(--px);
+  font-weight:750;
 }
 
 /* KITS */
@@ -394,10 +402,13 @@ function renderProducts(){
       <div class="card-body">
         <h4>${p.name}</h4>
         <ul>${p.desc.map(d=>`<li>${d}</li>`).join("")}</ul>
-        <button class="btn btn-mint" data-add="${p.id}">
-          ${p.oldPrice ? `<span class="old-price">${fmt(p.oldPrice)}</span> ` : ""}
-          ${fmt(p.price)} – DODAJ
-        </button>
+        
+        <div class="price-tag-box">
+          ${p.oldPrice ? `<span class="old-price">${fmt(p.oldPrice)}</span>` : ""}
+          <span class="new-price">${fmt(p.price)}</span>
+        </div>
+
+        <button class="btn btn-mint" data-add="${p.id}">DODAJ DO KOSZYKA</button>
       </div>
     </div>`).join("");
 }
