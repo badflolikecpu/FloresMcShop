@@ -82,6 +82,9 @@ button{font-family:inherit;cursor:pointer}
 .ip{margin-top:10px;display:flex;gap:8px;align-items:center;background:var(--bg);padding:10px 12px;border:2px dashed var(--line);font-family:var(--px);font-size:14px;color:var(--pink-soft);justify-content:space-between}
 .ip button{background:var(--mint);border:0;color:#06382b;font-family:var(--px);font-size:11px;padding:6px 10px}
 
+.dc-box{margin-top:12px;display:block;background:#5865F2;color:#fff;text-align:center;padding:10px;font-family:var(--px);font-size:13px;border-bottom:4px solid #3c45a5;transition:.1s}
+.dc-box:hover{transform:translateY(-2px)}
+
 /* TITLES */
 .title{display:flex;align-items:center;gap:18px;margin:46px 0 26px}
 .title i{flex:1;height:4px;background:var(--line)}
@@ -150,9 +153,9 @@ summary .r b{color:var(--mint)}
 footer{margin-top:70px;border-top:4px solid var(--line);background:var(--bg2);padding:34px 0;text-align:center;color:var(--muted);font-size:13px}
 footer .logo{display:inline-block;margin-bottom:10px}
 .policy-notice{color:var(--danger);font-family:var(--px);font-size:11px;margin-top:10px}
-.footer-links{margin-top:10px}
-.footer-links button{background:none;border:0;color:var(--mint);font-family:var(--px);font-size:11px;cursor:pointer;text-decoration:underline}
-.footer-links button:hover{color:var(--pink)}
+.footer-links{margin-top:10px;display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap}
+.footer-links button, .footer-links a{background:none;border:0;color:var(--mint);font-family:var(--px);font-size:11px;cursor:pointer;text-decoration:underline}
+.footer-links button:hover, .footer-links a:hover{color:var(--pink)}
 
 /* DRAWER */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:90;display:none}
@@ -245,6 +248,7 @@ input:focus,select:focus{border-color:var(--mint)}
         <h3>ADRES SERWERA</h3>
         <p>Wersja Minecraft 1.21.4</p>
         <div class="ip"><span id="ipText"></span><button id="copyIp2">KOPIUJ</button></div>
+        <a href="https://discord.gg/un4uzjxxKU" target="_blank" class="dc-box">DOŁĄCZ DO DISCORDA</a>
       </div>
       <div class="side-box">
         <h3>SZYBKIE ZAMÓWIENIE</h3>
@@ -287,6 +291,7 @@ input:focus,select:focus{border-color:var(--mint)}
     <p class="policy-notice">POLITYKA SKLEPU: Produkty cyfrowe (rangi, klucze) są nadawane bezpośrednio po zaksięgowaniu płatności. BRAK ZWROTÓW po aktywacji w grze.</p>
     <div class="footer-links">
       <button id="openRegulamin">Przeczytaj Regulamin Sklepu</button>
+      <a href="https://discord.gg/un4uzjxxKU" target="_blank">Discord Serwera</a>
     </div>
     <p style="margin-top:10px">© 2026 Flores MC SHOP. Wszelkie prawa zastrzeżone.</p>
   </div>
